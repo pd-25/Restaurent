@@ -40,7 +40,7 @@ Route::get('/addChef', [ChefController::class, 'addChef'])->name('addChef');
 Route::post('/uploadChef', [ChefController::class, 'uploadChef'])->name('uploadChef');
 Route::get('/editChef/{id}', [ChefController::class, 'editChef'])->name('editChef');
 Route::post('/updateChef/{id}', [ChefController::class, 'updateChef'])->name('updateChef');
-Route::post('/deleteChef', [ChefController::class, 'deleteChef'])->name('deleteChef');
+Route::delete('/deleteChef/{id}', [ChefController::class, 'deleteChef'])->name('deleteChef');
 Route::get('/showaddcartadmin', [AddCartController::class, 'showaddcartadmin'])->name('showaddcartadmin');
 
 

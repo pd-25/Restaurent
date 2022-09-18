@@ -1,0 +1,7 @@
+1. go to that folder in cmd
+2. git init
+3. git add .
+4. git commit -m "adding new project"
+5. git remote add origin https://github.com/pd-25/deltax_Spotify.git
+6. git switch main
+7. >git push -u origin main

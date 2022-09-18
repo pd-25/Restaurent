@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="ADMIN-asset/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="ADMIN-asset/assets/images/favicon.png" />
+
+    
     
     
   </head>
@@ -1067,5 +1069,66 @@
     <!-- Custom js for this page -->
     <script src="ADMIN-asset/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+
+{{-- warning massage during delete --}}
+    {{-- jquary cdn --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{{-- sweet alert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.ajaxSetup({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      }
+                    });
+        $('.chefdeletebtn').click(function (e){
+          e.preventDefault();
+
+          var delete_id = $(this).closest("tr").find('.deleteChef').val();
+          // alert(delete_id);
+
+
+
+          swal({
+                title: "Are you sure to delete?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+
+                  var data = {
+                              "_token": $('input[name=_token]').val(),
+                              "id": delete_id,
+                            };
+                  $.ajax({
+                    type: "DELETE",
+                    url: '/deleteChef/'+delete_id,
+                    data: data,
+                   
+                    success: function (response) {
+                      swal(response.status, {
+                          icon: "success",
+                        })
+                        .then((result) => {
+                          location.reload();
+                        });
+                    }
+                  });          
+
+
+                  
+                } else {
+                  swal("Your imaginary file is safe!");
+                }
+            });
+        });
+      });
+    </script>
+    {{-- delete warning end --}}
   </body>
 </html>

@@ -41,11 +41,14 @@
 
                 </td>
                 <td> 
-                  <form action="{{route('deleteChef')}}" method="post">
+                  {{-- <form action="{{route('deleteChef')}}" method="post">
                   @csrf
                   <input type="hidden" name="deleteChef" value="{{$c->id}}">
                   <button type="submit" class="btn btn-fill btn-primary">Delete</button> 
-                </form>
+                </form> --}}
+                <input type="hidden" class="deleteChef" value="{{$c->id}}">
+                <button type="submit" class="btn btn-fill btn-danger chefdeletebtn">Delete</button> 
+
                </td>
                 
               </tr>

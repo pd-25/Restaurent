@@ -87,15 +87,21 @@ class ChefController extends Controller
 
     }
 
-    public function deleteChef(Request $request)
+    public function deleteChef(Request $request,$id)
     {
-        if( Chef::where('id',$request->deleteChef)->delete()){
-            $request->session()->flash('message', 'your data has been deleted');
-        }else{
-            $request->session()->flash('message', 'your data has not been deleted');
-        }
+        // if( Chef::where('id',$request->deleteChef)->delete()){
+        //     $request->session()->flash('message', 'your data has been deleted');
+        // }else{
+        //     $request->session()->flash('message', 'your data has not been deleted');
+        // }
         
-        return redirect('/showChef');
+        // return redirect('/showChef'); 
+
+        $delete_chef = Chef::findorfail($id);
+        $delete_chef->delete();
+        return response()->json([
+            'status'=> 'deleted successfully'
+        ]);
     }
 }
 
